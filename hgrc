@@ -1,0 +1,16 @@
+[ui]
+username = Iulian Dogariu <code@iuliandogariu.com>
+merge = kdiff3
+
+[extensions]
+hgext.convert = 
+hgext.hgk =
+hgext.fetch =
+hgext.purge =
+hgext.transplant =
+
+[merge-tools]
+kdiff3.args=--auto -L1 base --L2 local --L3 other $base $local $other -o $output
+
+
+
