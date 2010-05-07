@@ -1,6 +1,6 @@
 set encoding=utf-8
 "set guifont=Consolas:h11:cDEFAULT
-
+filetype plugin indent on
 syntax on
 set ai
 set bs=2
@@ -32,4 +32,12 @@ set grepprg=ack
 " Map shortcuts to next/prev search result
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
+
+
+" vimclojure settings, as per http://blip.tv/file/1884989
+let clj_highlight_builtins = 1
+let clj_highlight_contrib = 1
+let clj_paren_rainbow = 1
+let clj_want_gorilla = 1
+let vimclojure#NailgunClient = "/home/iulian/.vimplugins/vimclojure/ng"
 
