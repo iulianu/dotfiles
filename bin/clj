@@ -1,0 +1,14 @@
+#!/bin/sh
+breakchars="(){}[],^%$#@\"\";:''|\\"
+CLOJURE_DIR=/opt/clojure-1.1.0
+CLOJURE_JAR="$CLOJURE_DIR"/clojure.jar
+CLOJURE_CONTRIB_DIR=/opt/clojure-contrib
+export CLASSPATH=$CLASSPATH:$CLOJURE_JAR:$CLOJURE_CONTRIB_DIR/clojure-contrib.jar
+if [ $# -eq 0 ]; then 
+	exec rlwrap --remember -c -b "$breakchars" \
+	-f "$HOME"/.clj_completions \
+	java  clojure.main --repl
+else
+	exec java clojure.main $1 -- "$@"
+fi
+
