@@ -8,6 +8,7 @@ set ruler
 set modeline
 set nofoldenable
 set shiftround     " When at 3 spaces and I hit >>, go to 4, not 5.
+"set showmode
 
 " Rails
 let mapleader = ","
