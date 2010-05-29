@@ -9,6 +9,7 @@ set modeline
 set nofoldenable
 set shiftround     " When at 3 spaces and I hit >>, go to 4, not 5.
 "set showmode
+set pastetoggle=<F2> " http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste
 
 " Rails
 let mapleader = ","
