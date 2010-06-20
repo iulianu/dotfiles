@@ -19,16 +19,19 @@ let mapleader = ","
 
 " From http://github.com/r00k/dotfiles/blob/master/vimrc
 map <Leader>c :Rcontroller 
+map <Leader>tc :RTcontroller 
 map <Leader>vc :RVcontroller 
 map <Leader>sc :RScontroller 
 map <Leader>vf :RVfunctional 
 map <Leader>l :!ruby <C-r>% \| less<CR>
 map <Leader>m :Rmodel 
+map <Leader>tm :RTmodel 
 map <Leader>vm :RVmodel 
 map <Leader>sm :RSmodel 
 map <Leader>u :Runittest 
 map <Leader>vu :RVunittest 
 map <Leader>su :RSunittest 
+map <Leader>tv :RTview 
 map <Leader>vv :RVview 
 map <Leader>sv :RSview 
 
