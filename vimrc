@@ -1,5 +1,8 @@
 set encoding=utf-8
+
 "set guifont=Consolas:h11:cDEFAULT
+highlight Normal guibg=lightyellow
+
 filetype plugin indent on
 syntax on
 set ai
