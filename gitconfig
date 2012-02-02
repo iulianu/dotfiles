@@ -3,3 +3,5 @@
 [user]
 	name = Iulian Dogariu
 	email = code@iuliandogariu.com
+[color]
+	ui = auto
