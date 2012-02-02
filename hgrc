@@ -11,9 +11,12 @@ hgext.purge =
 hgext.transplant =
 hgext.mq =
 hgext.hgshelve = ~/.mercurial/hgshelve.py
+# requires `apt-get install python-subversion`
+#hgsubversion = /opt/hgsubversion/hgsubversion
+hgext.graphlog =
 
 [merge-tools]
 ;kdiff3.args=--auto -L1 base --L2 local --L3 other $base $local $other -o $output
-
+;meld.args = $base $local $other
 
 
