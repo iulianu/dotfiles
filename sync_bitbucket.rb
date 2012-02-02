@@ -1,3 +1,8 @@
+# 43 15    * * *   iulian ruby /home/iulian/dotfiles/sync_bitbucket.rb
+# chmod 644 /etc/cron.d/bitbucket
+# chown root:root /etc/cron.d/bitbucket
+# service cron reload
+
 require 'net/https'
 require 'yaml'
 require '~/bitbucket_credentials.rb'
