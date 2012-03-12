@@ -1,10 +1,10 @@
 #!/bin/bash
-# 10 17    */2 * *   iulian /home/iulian/dotfiles/lslr-Media.sh
+# 10 18    * * *   iulian /home/iulian/dotfiles/lslr-Media.sh
 # chmod 644 /etc/cron.d/lslRMedia
 # chown root:root /etc/cron.d/lslRMedia
 # service cron reload
 
-dates=`date "+%Y%M%d"`
+dates=`date "+%Y%m%d"`
 fname=medialist-$dates
 ls -lR /home/iulian/Music > /tmp/$fname
 ls -lR /home/iulian/Store/Movies >> /tmp/$fname
