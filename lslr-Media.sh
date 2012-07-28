@@ -6,9 +6,9 @@
 
 dates=`date "+%Y%m%d"`
 fname=medialist-$dates
-ls -lR /home/iulian/Music > /tmp/$fname
-ls -lR /home/iulian/Store/Movies >> /tmp/$fname
-ls -lR /home/iulian/Store/DE_VAZUT >> /tmp/$fname
-gzip /tmp/$fname
-mv /tmp/$fname.gz /home/iulian/Dropbox/media/
+ls -lR /home/iulian/Music/ > /tmp/$fname
+ls -lR /home/iulian/Store/Movies/ >> /tmp/$fname
+ls -lR /home/iulian/Store/DE_VAZUT/ >> /tmp/$fname
+gzip -f /tmp/$fname
+mv -f /tmp/$fname.gz /home/iulian/Dropbox/Reference/media/
 
