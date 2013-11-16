@@ -42,10 +42,3 @@ map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
 
-" vimclojure settings, as per http://blip.tv/file/1884989
-let clj_highlight_builtins = 1
-let clj_highlight_contrib = 1
-let clj_paren_rainbow = 1
-let clj_want_gorilla = 1
-let vimclojure#NailgunClient = "/home/iulian/.vimplugins/vimclojure/ng"
-
