@@ -13,6 +13,7 @@
 # The file bitbucket_credentials.rb has to conform to this structure:
 #BITBUCKET_USERNAME = "iulianu"
 #BITBUCKET_PASSWORD = "lalala123"
+#BITBUCKET_TEAMS = ["team1", "team2"]
 #LOCAL_DIR = "~/Archive/bitbucket"
 #
 
@@ -36,55 +37,60 @@ def assert_success(process_status)
   end
 end
 
-def update_or_clone_hg(slug)
-  repo_url = "https://#{BITBUCKET_USERNAME}:#{BITBUCKET_PASSWORD}@bitbucket.org/#{BITBUCKET_USERNAME}/#{slug}"
-  local_path = "#{LOCAL_DIR}/#{slug}"
-  if File.exists?(File.expand_path("#{LOCAL_DIR}/#{slug}"))
+def update_or_clone_hg(owner, slug)
+  repo_url = "https://#{BITBUCKET_USERNAME}:#{BITBUCKET_PASSWORD}@bitbucket.org/#{owner}/#{slug}"
+  local_path = "#{LOCAL_DIR}/#{owner}/#{slug}"
+  if File.exists?(File.expand_path(local_path))
     puts "Updating #{slug}"
     `cd #{local_path} && hg pull #{repo_url}`
   else
-    puts "Cloning #{slug}"
+    puts "Cloning #{owner}/#{slug}"
     `hg clone -U #{repo_url} #{local_path}`
   end
   assert_success($?)
 end
 
-def update_or_clone_git(slug)
-  repo_url = "https://#{BITBUCKET_USERNAME}:#{BITBUCKET_PASSWORD}@bitbucket.org/#{BITBUCKET_USERNAME}/#{slug}"
-  local_path = "#{LOCAL_DIR}/#{slug}"
-  if File.exists?(File.expand_path("#{LOCAL_DIR}/#{slug}"))
+def update_or_clone_git(owner, slug)
+  repo_url = "https://#{BITBUCKET_USERNAME}:#{BITBUCKET_PASSWORD}@bitbucket.org/#{owner}/#{slug}"
+  local_path = "#{LOCAL_DIR}/#{owner}/#{slug}"
+  if File.exists?(File.expand_path(local_path))
     puts "Updating #{slug}"
     `cd #{local_path} && git fetch #{repo_url}`
   else
-    puts "Cloning #{slug}"
+    puts "Cloning #{owner}/#{slug}"
     `git clone -n #{repo_url} #{local_path}`
   end
   assert_success($?)
 end
 
 
-http = Net::HTTP.new("api.bitbucket.org", 443)
-http.use_ssl = true
-resp = nil
-http.start do |http|
-  req = Net::HTTP::Get.new "/1.0/users/#{BITBUCKET_USERNAME}/?format=yaml"
-  req.basic_auth(BITBUCKET_USERNAME, BITBUCKET_PASSWORD)
-  resp = http.request(req)
-end
-#p resp.body
-tree = YAML.load(resp.body)
-tree["repositories"].each do |repo_tree|
-  slug = repo_tree["slug"]
-  case repo_tree['scm']
-    when "hg"
-      puts "I will be syncing #{slug} via Hg"
-      update_or_clone_hg(slug)
-    when "git"
-      puts "I will be syncing #{slug} via Git"
-      update_or_clone_git(slug)
-    else
-      puts "Cannot sync #{slug}, unknown SCM: #{repo_tree['scm']}"
-  end
-end
+all_owners = [BITBUCKET_USERNAME] + BITBUCKET_TEAMS
 
+all_owners.each do |owner|
+
+  http = Net::HTTP.new("bitbucket.org", 443)
+  http.use_ssl = true
+  resp = nil
+  http.start do |http|
+    req = Net::HTTP::Get.new "https://bitbucket.org/!api/1.0/users/#{owner}/?format=yaml"
+    req.basic_auth(BITBUCKET_USERNAME, BITBUCKET_PASSWORD)
+    resp = http.request(req)
+  end
+p resp.body
+  tree = YAML.load(resp.body)
+  tree["repositories"].each do |repo_tree|
+    slug = repo_tree["slug"]
+    case repo_tree['scm']
+      when "hg"
+        puts "I will be syncing #{slug} via Hg"
+        update_or_clone_hg(owner, slug)
+      when "git"
+        puts "I will be syncing #{slug} via Git"
+        update_or_clone_git(owner, slug)
+      else
+        puts "Cannot sync #{owner}/#{slug}, unknown SCM: #{repo_tree['scm']}"
+    end
+  end
+
+end
 
