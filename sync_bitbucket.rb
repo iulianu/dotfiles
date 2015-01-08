@@ -15,6 +15,7 @@
 #BITBUCKET_PASSWORD = "lalala123"
 #BITBUCKET_TEAMS = ["team1", "team2"]
 #LOCAL_DIR = "~/Archive/bitbucket"
+#LOCAL_USER = "iulian"
 #
 
 require 'net/https'
@@ -48,6 +49,7 @@ def update_or_clone_hg(owner, slug)
     `hg clone -U #{repo_url} #{local_path}`
   end
   assert_success($?)
+  `chown -R #{LOCAL_USER} #{local_path}`
 end
 
 def update_or_clone_git(owner, slug)
@@ -61,6 +63,7 @@ def update_or_clone_git(owner, slug)
     `git clone -n #{repo_url} #{local_path}`
   end
   assert_success($?)
+  `chown -R #{LOCAL_USER} #{local_path}`
 end
 
 
@@ -76,7 +79,7 @@ all_owners.each do |owner|
     req.basic_auth(BITBUCKET_USERNAME, BITBUCKET_PASSWORD)
     resp = http.request(req)
   end
-p resp.body
+#p resp.body
   tree = YAML.load(resp.body)
   tree["repositories"].each do |repo_tree|
     slug = repo_tree["slug"]
