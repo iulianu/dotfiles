@@ -18,10 +18,10 @@ fname=medialist-$dates
 home=/Users/iulian
 itunesfolder=$home/Music/iTunes
 calibrefolder="$home/Calibre Library"
-secondaryvol=/Volumes/2tb-p2
+secondaryvol=/Volumes/BackupDisk
 destination=$home/Dropbox/Reference/media
 ls -lR $itunesfolder/iTunes\ Media/ > /tmp/$fname
-ls -lR $secondaryvol/Movies/ >> /tmp/$fname
+ls -lR $secondaryvol/MaybeMovies/ >> /tmp/$fname
 ls -lR "$calibrefolder/" >> /tmp/$fname
 gzip -f /tmp/$fname
 mv -f /tmp/$fname.gz $destination/
