@@ -1,20 +1,63 @@
-set encoding=utf-8
-
-"set guifont=Consolas:h11:cDEFAULT
-highlight Normal guibg=lightyellow
-
-filetype plugin indent on
+set nocompatible
 syntax on
+set encoding=utf-8
 set ai
 set bs=2
+set ts=4
+set sw=4
+set et
 set ruler
 set modeline
 set nofoldenable
 set shiftround     " When at 3 spaces and I hit >>, go to 4, not 5.
-"set showmode
+set showmode
 set pastetoggle=<F2> " http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste
+imap jk <Esc>
 
+""""""""""""""""""""""""""""""""
+" Vundle
+""""""""""""""""""""""""""""""""
+filetype off
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" Snipmate
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+
+Plugin 'github:tpope/vim-rails'
+
+Plugin 'github:StanAngeloff/php.vim'
+
+Plugin 'github:derekwyatt/vim-scala'
+
+Plugin 'Shougo/unite.vim'
+Plugin 'basyura/unite-rails'
+Plugin 'Shougo/unite-outline'
+
+Plugin 'majutsushi/tagbar'
+
+Plugin 'terryma/vim-multiple-cursors'
+
+" All of your Plugins must be added before the following line
+call vundle#end()
+filetype plugin indent on
+
+
+""""""""""""""""""""""""""""""""
+" Tagbar
+""""""""""""""""""""""""""""""""
+nmap <F8> :TagbarToggle<CR>
+
+""""""""""""""""""""""""""""""""
 " Rails
+""""""""""""""""""""""""""""""""
 let mapleader = ","
 
 " From http://github.com/r00k/dotfiles/blob/master/vimrc
@@ -35,10 +78,34 @@ map <Leader>tv :RTview
 map <Leader>vv :RVview 
 map <Leader>sv :RSview 
 
+""""""""""""""""""""""""""""""""
+" StanAngeloff/php.vim
+""""""""""""""""""""""""""""""""
+
+function! PhpSyntaxOverride()
+  hi! def link phpDocTags  phpDefine
+  hi! def link phpDocParam phpType
+endfunction
+
+augroup phpSyntaxOverride
+  autocmd!
+  autocmd FileType php call PhpSyntaxOverride()
+augroup END
+
+
+""""""""""""""""""""""""""""""""
+" Obsolete
+""""""""""""""""""""""""""""""""
+
+"" For Windows GUI
+
+"set guifont=Consolas:h11:cDEFAULT
+"highlight Normal guibg=lightyellow
+
 " Use Ack instead of grep
-set grepprg=ack
+"set grepprg=ack
 " Map shortcuts to next/prev search result
-map <C-n> :cn<CR>
-map <C-p> :cp<CR>
+"map <C-n> :cn<CR>
+"map <C-p> :cp<CR>
 
 
