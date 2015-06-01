@@ -1,11 +1,6 @@
 set nocompatible
 syntax on
 set encoding=utf-8
-set ai
-set bs=2
-set ts=4
-set sw=4
-set et
 set ruler
 set modeline
 set nofoldenable
@@ -31,7 +26,8 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 
-Plugin 'github:tpope/vim-rails'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-bundler'
 
 Plugin 'github:StanAngeloff/php.vim'
 
@@ -69,6 +65,16 @@ Plugin 'burnettk/vim-angular'
 call vundle#end()
 filetype plugin indent on
 
+""""""""""""""""""""""""""""""""
+" Default tab and indent behaviour
+""""""""""""""""""""""""""""""""
+set ai
+set bs=2
+set ts=4
+set sw=4
+set et
+" Overrides for Ruby source
+au FileType ruby set ts=2 sw=2
 
 """"""""""""""""""""""""""""""""
 " Tagbar
