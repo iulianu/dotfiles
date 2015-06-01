@@ -56,6 +56,15 @@ Plugin 'tpope/vim-ragtag'
 
 Plugin 'tpope/vim-surround'
 
+" Angular and other Javascript goodies
+" https://github.com/burnettk/vim-angular
+Plugin 'pangloss/vim-javascript'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'matthewsimo/angular-vim-snippets'
+Plugin 'claco/jasmine.vim'
+Plugin 'scrooloose/syntastic.git'
+Plugin 'burnettk/vim-angular'
+
 " All of your Plugins must be added before the following line
 call vundle#end()
 filetype plugin indent on
