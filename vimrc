@@ -37,6 +37,11 @@ Plugin 'github:StanAngeloff/php.vim'
 
 Plugin 'github:derekwyatt/vim-scala'
 
+Plugin 'tpope/vim-cucumber'
+
+" Haml, Sass and SCSS
+Plugin 'tpope/vim-haml'
+
 Plugin 'Shougo/unite.vim'
 Plugin 'basyura/unite-rails'
 Plugin 'Shougo/unite-outline'
@@ -44,6 +49,12 @@ Plugin 'Shougo/unite-outline'
 Plugin 'majutsushi/tagbar'
 
 Plugin 'terryma/vim-multiple-cursors'
+
+Plugin 'tpope/vim-endwise'
+
+Plugin 'tpope/vim-ragtag'
+
+Plugin 'tpope/vim-surround'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
