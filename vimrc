@@ -31,7 +31,7 @@ Plugin 'tpope/vim-bundler'
 
 Plugin 'github:StanAngeloff/php.vim'
 
-Plugin 'github:derekwyatt/vim-scala'
+"Plugin 'github:derekwyatt/vim-scala'
 
 Plugin 'tpope/vim-cucumber'
 
@@ -61,6 +61,15 @@ Plugin 'claco/jasmine.vim'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'burnettk/vim-angular'
 
+" Go language golang
+Plugin 'fatih/vim-go'
+
+" React
+Plugin 'mxw/vim-jsx'
+
+" Idris
+Plugin 'idris-hackers/idris-vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()
 filetype plugin indent on
@@ -75,6 +84,8 @@ set sw=4
 set et
 " Overrides for Ruby source
 au FileType ruby set ts=2 sw=2
+" Overrides for javascript
+au FileType javascript set ts=2 sw=2
 
 """"""""""""""""""""""""""""""""
 " Tagbar
