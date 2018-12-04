@@ -1,6 +1,9 @@
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
-[ -f ~/.rvm/scripts/rvm ] && source ~/.rvm/scripts/rvm
+rvm_activate() {
+    [ -f ~/.rvm/scripts/rvm ] && source ~/.rvm/scripts/rvm
+    export PATH=$PATH:$HOME/.rvm/bin
+}
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
