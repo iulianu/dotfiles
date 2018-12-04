@@ -1,5 +1,5 @@
 # === On Linux
-# 43 15    * * *   iulian ruby /home/iulian/dotfiles/sync_bitbucket.rb
+# 43 15    * * *   iulian ruby /home/iulian/WorkDev/dotfiles/sync_bitbucket.rb
 # chmod 644 /etc/cron.d/bitbucket
 # chown root:root /etc/cron.d/bitbucket
 # service cron reload
@@ -8,7 +8,7 @@
 # SHELL=/bin/bash
 # MAILTO=iulian
 # PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-# 43 19    * * *   cd /Users/iulian/dotfiles/ && ruby sync_bitbucket.rb
+# 43 19    * * *   cd /Users/iulian/WorkDev/dotfiles/ && ruby sync_bitbucket.rb
 # ===
 # The file bitbucket_credentials.rb has to conform to this structure:
 #BITBUCKET_USERNAME = "iulianu"
@@ -24,7 +24,7 @@ require './bitbucket_credentials'
 require 'pp'
 
 unless (defined?(LOCAL_DIR) && LOCAL_DIR.strip.size > 0)
-  puts "ERROR: add a script called ~/dotfiles/bitbucket_credentials.rb"
+  puts "ERROR: add a script called ~/WorkDev/dotfiles/bitbucket_credentials.rb"
   exit 2
 end
 

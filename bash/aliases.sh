@@ -5,7 +5,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 #alias ack=ack-grep
-#alias dquilt="quilt --quiltrc=${HOME}/dotfiles/quiltrc-dpkg"
+#alias dquilt="quilt --quiltrc=${HOME}/WorkDev/dotfiles/quiltrc-dpkg"
 
 # Linux only 
 #alias ls='ls --color=auto'

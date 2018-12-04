@@ -2,7 +2,7 @@
 # I do this just in case I lose both my primary HDD
 # and my Time Machine HDD at once.
 # === On Linux
-# 10 18    * * *   iulian /home/iulian/dotfiles/lslr-Media.sh
+# 10 18    * * *   iulian /home/iulian/WorkDev/dotfiles/lslr-Media.sh
 # chmod 644 /etc/cron.d/lslRMedia
 # chown root:root /etc/cron.d/lslRMedia
 # service cron reload
@@ -11,7 +11,7 @@
 # SHELL=/bin/bash
 # MAILTO=iulian
 # PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-# 43 19    * * *  /Users/iulian/dotfiles/lslr-Media.sh 
+# 43 19    * * *  /Users/iulian/WorkDev/dotfiles/lslr-Media.sh 
 
 dates=`date "+%Y%m%d"`
 fname=medialist-$dates
