@@ -41,7 +41,7 @@ def repo_url(owner, slug):
 
 
 def local_path(scm, owner, slug):
-    return "%s/%s/%s/%s" % (creds.LOCAL_DIR, scm, owner, slug)
+    return "%s/%s/bitbucket/%s/%s" % (creds.LOCAL_DIR, scm, owner, slug)
 
 
 def fetch_command(scm, url):
@@ -55,21 +55,21 @@ def fetch_command(scm, url):
 
 def clone_command(scm, url, lpath):
     if scm == 'git':
-        return "git clone -n %s %s" % (url, lpath)
+        return "git clone -n %s '%s'" % (url, lpath)
     elif scm == 'hg':
-        return "hg clone -U %s %s" % (url, lpath)
+        return "hg clone -U %s '%s'" % (url, lpath)
     else:
         raise "Unknown SCM %s" % scm
 
 
-def sync_repo(scm, owner, repo_name):
-    url = repo_url(owner, repo_name)
-    lpath = local_path(scm, owner, repo_name)
-    if os.path.exists(lpath):
-        print("Updating %s" % repo_name)
-        exit_code = os.system("cd %s && %s" % (lpath, fetch_command(scm, url)))
+def sync_repo(scm, owner, slug):
+    url = repo_url(owner, slug)
+    lpath = local_path(scm, owner, slug)
+    if os.path.exists(os.path.expanduser(lpath)):
+        print("Updating %s" % slug)
+        exit_code = os.system("cd '%s' && %s" % (lpath, fetch_command(scm, url)))
     else:
-        print("Cloning %s/%s" % (owner, repo_name))
+        print("Cloning %s/%s" % (owner, slug))
         exit_code = os.system(clone_command(scm, url, lpath))
     if exit_code != 0:
         print("Last command exited with code %s" % exit_code)
@@ -80,11 +80,14 @@ def sync_owner(owner_name):
     repos = list(Repository.find_repositories_by_owner_and_role(owner_name, 'member', client=bitbucket))
     print("Count of repositories: %d" % len(repos))
     for repo in repos:
-        print(repo.name)
-        sync_repo(repo.scm, owner_name, repo.name)
+        print(repo.slug)
+        sync_repo(repo.scm, owner_name, repo.slug)
 
 
-os.system("mkdir -p %s" % creds.LOCAL_DIR)
+if not os.path.exists(os.path.expanduser(creds.LOCAL_DIR)):
+    print("LOCAL_DIR %s does not exist" % creds.LOCAL_DIR)
+    sys.exit(1)
+
 
 sync_owner(creds.BITBUCKET_USERNAME)
 for team in creds.BITBUCKET_TEAMS:
