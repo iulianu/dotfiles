@@ -1,2 +1,3 @@
-bitbucket_credentials.rb
+bitbucket_credentials.py
 hosting-credentials.sh
+*.pyc
